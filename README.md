@@ -5,7 +5,8 @@ The official website for the Bearden High School Robotics Club.
 ## Stack
 
 - [Vite](https://vitejs.dev/) + [React](https://react.dev/)
-- [Framer](https://www.framer.com/) for design and motion
+- [framer-motion](https://motion.dev/) for animation
+- Hosted on [Railway](https://railway.com/)
 
 ## Getting started
 
