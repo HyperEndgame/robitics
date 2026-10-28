@@ -155,8 +155,8 @@ A cool, near-monochrome drafting palette with one saturated school color used sp
 - **Display** (800, width 125, clamp 2.6–5.5rem, line-height 0.95): the hero statement only.
 - **Headline** (750, width 112, clamp 2–3.75rem, line-height 1): section titles, written as short sentences ending in a period.
 - **Spec Term** (750, width 120, clamp 1.5–2rem): the verbs in the About spec list.
-- **Title** (700, width 110, 1.125rem; 1.375rem inside Join steps): subsection heads. Width 110 at 700 is also the button and table-caption voice.
-- **Lede** (400, clamp 1.05–1.25rem; About uses up to 1.3rem): intro paragraphs in Graphite, 34ch in the hero, 52ch in sections.
+- **Title** (700, width 110, 1.125rem): subsection heads. Width 110 at 700 is also the button and table-caption voice.
+- **Lede** (400, clamp 1.05–1.25rem): intro paragraphs in Graphite, 34ch in the hero, 52ch in sections.
 - **Body** (400, 16px, line-height 1.55): running text, capped near 48ch in spec rows.
 - **Label** (mono 400, 0.875–0.9rem, tabular numerals): part numbers, quantities, step captions, title-block values, placeholders. Drawing callouts use the same face at 13px inside the SVG.
 
