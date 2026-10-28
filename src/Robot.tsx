@@ -21,12 +21,12 @@ export type Part = {
 }
 
 export const PARTS: Part[] = [
-  { id: 'chassis', qty: 2, partNo: 'BHR-101', name: 'C-channel rail, 33-hole', caption: 'Lay out the chassis rails', dx: 0, dy: -24, rot: -2, anchor: [630, 600], balloon: [870, 560] },
-  { id: 'wheels', qty: 2, partNo: 'BHR-102', name: 'Wheel, 4 in', caption: 'Fit the wheels', dx: 0, dy: 84, rot: 0, anchor: [780, 600], balloon: [880, 690] },
-  { id: 'motors', qty: 2, partNo: 'BHR-103', name: 'Smart motor, drive', caption: 'Mount the drive motors', dx: 0, dy: -170, rot: 0, anchor: [480, 600], balloon: [400, 560] },
+  { id: 'chassis', qty: 2, partNo: 'BHR-101', name: 'C-channel rail, 33‑hole', caption: 'Lay out the chassis rails', dx: 0, dy: -24, rot: -2, anchor: [630, 600], balloon: [870, 560] },
+  { id: 'wheels', qty: 2, partNo: 'BHR-102', name: 'Wheel, 4 in', caption: 'Fit the wheels', dx: 0, dy: 84, rot: 0, anchor: [780, 600], balloon: [880, 600] },
+  { id: 'motors', qty: 2, partNo: 'BHR-103', name: 'Smart motor, drive', caption: 'Mount the drive motors', dx: 0, dy: -170, rot: 0, anchor: [480, 600], balloon: [560, 540] },
   { id: 'brain', qty: 1, partNo: 'BHR-104', name: 'Robot brain', caption: 'Mount the brain', dx: -150, dy: -110, rot: -6, anchor: [510, 483], balloon: [380, 420] },
-  { id: 'battery', qty: 1, partNo: 'BHR-105', name: 'Battery', caption: 'Seat the battery', dx: 0, dy: 84, rot: 3, anchor: [636, 626], balloon: [636, 690] },
-  { id: 'towers', qty: 2, partNo: 'BHR-106', name: 'Tower upright, 22-hole', caption: 'Raise the towers', dx: 0, dy: -110, rot: 0, anchor: [660, 456], balloon: [580, 300] },
+  { id: 'battery', qty: 1, partNo: 'BHR-105', name: 'Battery', caption: 'Seat the battery', dx: 300, dy: 0, rot: 3, anchor: [636, 626], balloon: [700, 580] },
+  { id: 'towers', qty: 2, partNo: 'BHR-106', name: 'Tower upright, 22‑hole', caption: 'Raise the towers', dx: 0, dy: -110, rot: 0, anchor: [660, 456], balloon: [580, 300] },
   { id: 'arm', qty: 1, partNo: 'BHR-107', name: 'Arm and claw assembly', caption: 'Attach the arm and claw', dx: 90, dy: -150, rot: -18, anchor: [800, 390], balloon: [900, 470] },
 ]
 
@@ -131,6 +131,8 @@ export function Robot({ p, step }: { p: MotionValue<number>; step: number }) {
   const drive = useTransform(p, [0.9, 0.97], [0, 24], { ease })
   const spin = useTransform(p, [0.9, 0.97], [0, 29], { ease })
   const dims = useTransform(p, [0.8, 0.86], [0, 1])
+  // The ground appears as the wheels land, so exploded parts never sit "underground".
+  const ground = useTransform(p, [stepStart(2), stepStart(2) + MOVE_LEN], [0, 1])
   const art: Record<string, ReactNode> = {
     chassis: (
       <g>
@@ -186,10 +188,10 @@ export function Robot({ p, step }: { p: MotionValue<number>; step: number }) {
     <svg className="robot" viewBox="260 180 880 560" role="img" aria-labelledby="robot-title robot-desc">
       <title id="robot-title">Clawbot, side elevation</title>
       <desc id="robot-desc">A VEX-style clawbot built from chassis rails, two wheels, drive motors, a brain, a battery, two tower uprights, and an arm with a claw.</desc>
-      <g className="ground" aria-hidden="true">
+      <motion.g className="ground" style={{ opacity: ground }} aria-hidden="true">
         <path d="M300 648h820" />
         <path className="thin" d={Array.from({ length: 41 }, (_, i) => `M${304 + i * 20} 648l-10 12`).join('')} />
-      </g>
+      </motion.g>
       <g className="guides" aria-hidden="true">
         {PARTS.map((part, i) => <Guide key={part.id} part={part} k={i + 1} p={p} />)}
       </g>

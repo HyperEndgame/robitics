@@ -45,6 +45,23 @@ section[id] {
   border-color: var(--on-maroon-2);
 }
 
+/* Placeholder CTA: same footprint as the real button, dashed and inert until the club email is set. */
+.button--tbd,
+.button--tbd:hover {
+  border-style: dashed;
+  background: transparent;
+  color: var(--maroon);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.button--light.button--tbd,
+.button--light.button--tbd:hover {
+  border-color: var(--on-maroon-2);
+  color: var(--on-maroon);
+}
+
 .skip {
   position: absolute;
   left: 8px;
@@ -345,10 +362,6 @@ section[id] {
 
 /* ---------- About ---------- */
 
-.about h2 {
-  max-width: 14ch;
-}
-
 .about-lede {
   max-width: 52ch;
   margin-top: 28px;
@@ -461,30 +474,16 @@ section[id] {
 
 /* ---------- Sponsors ---------- */
 
-.slots {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+.bom.slots {
+  display: table;
+  justify-self: auto;
+  width: min(100%, 520px);
   margin: clamp(40px, 6vw, 64px) 0 40px;
-  padding: 0;
-  list-style: none;
+  font-size: 0.9375rem;
 }
 
-.slots li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  aspect-ratio: 3 / 2;
-  border: 1.5px dashed var(--ink-3);
-  background: var(--paper);
+.slots td:last-child {
   color: var(--ink-2);
-}
-
-.slots li .mono {
-  font-size: 0.875rem;
-  color: var(--ink);
 }
 
 .sponsors {
@@ -640,14 +639,8 @@ section[id] {
     display: none;
   }
 
-  .join-steps,
-  .slots {
+  .join-steps {
     grid-template-columns: 1fr;
-  }
-
-  .slots li {
-    aspect-ratio: auto;
-    padding: 24px;
   }
 }
 
@@ -660,8 +653,8 @@ section[id] {
     height: auto;
   }
 
-  .robot text,
-  .robot .dim-bg,
+  /* Labels would render below 6px at this scale; drop them rather than leave unlabeled arrows. */
+  .robot .dims,
   .balloon {
     display: none;
   }
@@ -693,11 +686,26 @@ section[id] {
 }
 
 @media (max-width: 560px) {
-  .nav li:not(:last-child) {
+  .wordmark span {
     display: none;
+  }
+
+  .nav ul {
+    gap: 0;
+  }
+
+  .nav li a {
+    padding-inline: 7px;
+    font-size: 0.875rem;
   }
 
   .lede {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .nav li:first-child {
+    display: none;
   }
 }

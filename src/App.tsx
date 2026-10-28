@@ -8,7 +8,7 @@ function Tbd({ value, label }: { value: string; label: string }) {
 }
 
 function MailButton({ className, children }: { className: string; children: ReactNode }) {
-  if (!CLUB.email) return <span className="tbd">Club email TBD</span>
+  if (!CLUB.email) return <span className={`${className} button--tbd`}>{children}: address TBD</span>
   return <a className={className} href={`mailto:${CLUB.email}`}>{children}</a>
 }
 
@@ -40,7 +40,7 @@ const DOING = [
 function Nav() {
   return (
     <nav className="nav" aria-label="Main">
-      <a className="wordmark" href="#top">Bearden Robotics</a>
+      <a className="wordmark" href="#top">Bearden<span> Robotics</span></a>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#sponsors">Sponsors</a></li>
@@ -54,7 +54,7 @@ function Nav() {
 function About() {
   return (
     <section id="about" className="section about" aria-labelledby="about-title">
-      <h2 id="about-title">Design it. Build it. Program it. Drive it.</h2>
+      <h2 id="about-title">Design it. Build it.<br /> Program it. Drive it.</h2>
       <p className="about-lede">
         We are a club at {CLUB.school} that builds robots with VEX hardware. Every robot starts as a sketch and ends on the floor, driving.
       </p>
@@ -103,9 +103,17 @@ function Sponsors() {
     <section id="sponsors" className="section sponsors" aria-labelledby="sponsors-title">
       <h2 id="sponsors-title">Sponsor the build.</h2>
       <p className="about-lede">We do not have any sponsors yet. Your name could be the first one on this sheet.</p>
-      <ul className="slots" aria-label="Open sponsor spots">
-        {['A', 'B', 'C'].map((s) => <li key={s}><span className="mono">Sponsor {s}</span><span>Open</span></li>)}
-      </ul>
+      <table className="bom slots">
+        <caption>Sponsor list</caption>
+        <thead>
+          <tr><th scope="col">Item</th><th scope="col">Part no.</th><th scope="col">Sponsor</th></tr>
+        </thead>
+        <tbody>
+          {['S01', 'S02', 'S03'].map((s, i) => (
+            <tr key={s}><td className="mono">{i + 1}</td><td className="mono">BHR-{s}</td><td>Open</td></tr>
+          ))}
+        </tbody>
+      </table>
       <div className="sponsor-funds">
         <h3>Sponsorship helps pay for</h3>
         <ul>
@@ -125,7 +133,7 @@ function Contact() {
     <section id="contact" className="section contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact.</h2>
       <dl className="contact-list">
-        <div><dt>Email</dt><dd><MailButton className="">{CLUB.email}</MailButton></dd></div>
+        <div><dt>Email</dt><dd>{CLUB.email ? <a href={`mailto:${CLUB.email}`}>{CLUB.email}</a> : <Tbd value="" label="Club email" />}</dd></div>
         <div><dt>Advisor</dt><dd><Tbd value={CLUB.advisor} label="Advisor name" /></dd></div>
         <div><dt>Where</dt><dd>{CLUB.school}, {CLUB.city}</dd></div>
         <div><dt>When</dt><dd><Tbd value={CLUB.meetingDay} label="Meeting day" /></dd></div>
@@ -139,7 +147,7 @@ function TitleBlock() {
     ['Title', 'Bearden High Robotics Club'],
     ['Drawn by', 'Bearden Robotics'],
     ['Location', `${CLUB.school}, ${CLUB.city}`],
-    ['Scale', '1:1'],
+    ['Scale', 'NTS'],
     ['Rev', 'A'],
     ['Sheet', '1 of 1'],
   ]
