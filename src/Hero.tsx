@@ -1,0 +1,82 @@
+import { useRef, useState } from 'react'
+import { useMotionValue, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
+import { PARTS, Robot, stepFor } from './Robot'
+
+function caption(step: number) {
+  if (step === 0) return 'Exploded view. Scroll to build it.'
+  if (step > PARTS.length) return 'Assembled.'
+  return `Step ${step} of ${PARTS.length}: ${PARTS[step - 1].caption}`
+}
+
+function PartsList({ step }: { step: number }) {
+  return (
+    <table className="bom">
+      <caption>Parts list</caption>
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Part no.</th>
+          <th scope="col">Name</th>
+          <th scope="col"><span className="sr-only">Placed</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {PARTS.map((part, i) => {
+          const k = i + 1
+          const state = step < k ? 'pending' : step === k ? 'active' : 'placed'
+          return (
+            <tr key={part.id} data-state={state}>
+              <td className="mono">{k}</td>
+              <td className="mono">{part.qty}</td>
+              <td className="mono">{part.partNo}</td>
+              <td>{part.name}</td>
+              <td className="check"><span className="sr-only">{state === 'placed' ? 'placed' : 'not placed'}</span></td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  )
+}
+
+function PartsStrip({ step }: { step: number }) {
+  const part = PARTS[Math.min(Math.max(step, 1), PARTS.length) - 1]
+  return (
+    <div className="strip" aria-hidden="true">
+      <span className="mono">{part.qty} × {part.partNo}</span>
+      <span>{step > PARTS.length ? 'All parts placed' : part.name}</span>
+      <span className="ticks">
+        {PARTS.map((p, i) => <i key={p.id} data-on={step > i + 1 || undefined} />)}
+      </span>
+    </div>
+  )
+}
+
+export function Hero() {
+  const ref = useRef<HTMLElement>(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
+  const still = useMotionValue(1)
+  const p = reduce ? still : scrollYProgress
+  const [step, setStep] = useState(() => stepFor(p.get()))
+  useMotionValueEvent(p, 'change', (v) => setStep(stepFor(v)))
+
+  return (
+    <section ref={ref} className={reduce ? 'hero hero--static' : 'hero'} aria-labelledby="hero-title">
+      <div className="stage">
+        <div className="hero-copy">
+          <h1 id="hero-title">We build robots.</h1>
+          <p className="lede">Bearden High Robotics Club designs, builds, programs and drives VEX robots in Knoxville, Tennessee.</p>
+          <a className="button" href="#join">Join the club</a>
+          <p className="caption" aria-live="polite" aria-atomic="true">{caption(step)}</p>
+        </div>
+        <div className="sheet">
+          <Robot p={p} step={step} />
+          <PartsList step={step} />
+          <PartsStrip step={step} />
+        </div>
+      </div>
+    </section>
+  )
+}
