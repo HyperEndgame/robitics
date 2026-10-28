@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "title": "Design System: Bearden High Robotics Club",
+  "extensions": {
+    "colorMeta": {
+      "blueprint-paper": { "role": "neutral", "displayName": "Blueprint Paper", "canonical": "#eef1f4", "cssVar": "--paper", "tonalRamp": ["#1d2329", "#333a42", "#4d5560", "#6b737d", "#8d949d", "#b1b7be", "#d6dbe0", "#eef1f4"] },
+      "grid-minor": { "role": "neutral", "displayName": "Grid Minor", "canonical": "#dde2e8", "cssVar": "--grid-minor", "tonalRamp": ["#1c232b", "#323b45", "#4b5662", "#687482", "#8a95a2", "#aeb7c1", "#cbd2d9", "#dde2e8"] },
+      "grid-major": { "role": "neutral", "displayName": "Grid Major", "canonical": "#c9d0d8", "cssVar": "--grid-major", "tonalRamp": ["#1b222a", "#303a45", "#495562", "#667381", "#8794a2", "#a9b3be", "#c9d0d8", "#e3e7ec"] },
+      "drafting-ink": { "role": "neutral", "displayName": "Drafting Ink", "canonical": "#1f2328", "cssVar": "--ink", "tonalRamp": ["#1f2328", "#33383f", "#4a5058", "#646b74", "#808790", "#a1a7ae", "#c5c9ce", "#e9ebee"] },
+      "graphite": { "role": "neutral", "displayName": "Graphite", "canonical": "#545b64", "cssVar": "--ink-2", "tonalRamp": ["#1e2125", "#30353b", "#434950", "#545b64", "#737a83", "#979da5", "#bec2c8", "#e6e8eb"] },
+      "construction-gray": { "role": "neutral", "displayName": "Construction Gray", "canonical": "#7c838c", "cssVar": "--ink-3", "tonalRamp": ["#1f2226", "#33373c", "#4a4f55", "#636970", "#7c838c", "#9aa0a7", "#bfc3c8", "#e6e8ea"] },
+      "bearden-maroon": { "role": "primary", "displayName": "Bearden Maroon", "canonical": "#7a1f2e", "cssVar": "--maroon", "tonalRamp": ["#2e0910", "#4a1019", "#5e1622", "#7a1f2e", "#9e3a4a", "#c26f7c", "#e0b3ba", "#f6e9eb"] },
+      "maroon-deep": { "role": "primary", "displayName": "Maroon Deep", "canonical": "#5e1622", "cssVar": "--maroon-dark", "tonalRamp": ["#2e0910", "#4a1019", "#5e1622", "#7a1f2e", "#9e3a4a", "#c26f7c", "#e0b3ba", "#f6e9eb"] },
+      "maroon-wash": { "role": "primary", "displayName": "Maroon Wash", "canonical": "#f1e3e5", "cssVar": "--maroon-tint", "tonalRamp": ["#2e0910", "#4a1019", "#5e1622", "#7a1f2e", "#9e3a4a", "#c26f7c", "#e0b3ba", "#f1e3e5"] },
+      "on-maroon": { "role": "primary", "displayName": "On Maroon", "canonical": "#ffffff", "cssVar": "--on-maroon", "tonalRamp": ["#262626", "#3d3d3d", "#575757", "#737373", "#949494", "#b8b8b8", "#dedede", "#ffffff"] },
+      "on-maroon-soft": { "role": "primary", "displayName": "On Maroon Soft", "canonical": "#ebd3d7", "cssVar": "--on-maroon-2", "tonalRamp": ["#2e0910", "#4a1019", "#5e1622", "#7a1f2e", "#9e3a4a", "#c26f7c", "#ebd3d7", "#f8eef0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero statement only. Archivo 800 at width 125." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles, short sentences ending in a period." },
+      "spec-term": { "displayName": "Spec Term", "purpose": "Verbs in the About spec list, paired with a maroon line icon." },
+      "title": { "displayName": "Title", "purpose": "Subsection heads; the 700/width-110 voice is shared by buttons and table captions." },
+      "lede": { "displayName": "Lede", "purpose": "Intro paragraphs in Graphite, 34ch in the hero, 52ch in sections." },
+      "body": { "displayName": "Body", "purpose": "Running text at 16px / 1.55." },
+      "label": { "displayName": "Drawing Label", "purpose": "Mono with tabular numerals for part numbers, quantities, captions, title-block values, and TBD marks." }
+    },
+    "lines": [
+      { "name": "stroke-default", "value": "1.5px, round joins and caps, non-scaling", "purpose": "Every edge in drawings and icons; frame rules of tables, spec list, title block." },
+      { "name": "stroke-thin", "value": "0.75px", "purpose": "Thin detail, leader lines, center lines." },
+      { "name": "rule-inner", "value": "1px", "purpose": "Row and cell dividers inside ruled blocks; grid lines." },
+      { "name": "dash-center", "value": "stroke-dasharray: 14 3 2 3", "purpose": "Center lines in the drawing (5 2 1 2 at icon scale)." },
+      { "name": "dash-guide", "value": "stroke-dasharray: 4 4", "purpose": "Assembly guides from a part to its home position." },
+      { "name": "dash-hidden", "value": "stroke-dasharray: 6 4", "purpose": "Hidden lines behind a part." },
+      { "name": "grid", "value": "24px minor / 120px major, 1px rules", "purpose": "Blueprint paper background on body." }
+    ],
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Color, background, and opacity state changes at 0.2-0.3s." },
+      { "name": "ease-assembly", "value": "cubic in-out (4t^3 / 1-(-2t+2)^3/2)", "purpose": "Scroll-linked travel of each part along its guide into place." },
+      { "name": "press", "value": "translateY(1px), 0.1s", "purpose": "Button active state." },
+      { "name": "reduced-motion", "value": "transitions none; hero static and assembled", "purpose": "Honors prefers-reduced-motion live." }
+    ],
+    "breakpoints": [
+      { "name": "stack", "value": "960px" },
+      { "name": "narrow", "value": "720px" },
+      { "name": "phone", "value": "560px" },
+      { "name": "tiny", "value": "359px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action on paper: Join the club, Ask about sponsoring.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Join the club</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 24px; border: 2px solid #7a1f2e; border-radius: 2px; background: #7a1f2e; color: #ffffff; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-variation-settings: 'wdth' 110; text-decoration: none; transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.1s; } .ds-btn:hover { background: #5e1622; border-color: #5e1622; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid #7a1f2e; outline-offset: 3px; }"
+    },
+    {
+      "name": "Light Button",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Primary action inside the maroon Join field.",
+      "html": "<div class=\"ds-field\"><a class=\"ds-btn-light\" href=\"#\">Email the club</a></div>",
+      "css": ".ds-field { background: #7a1f2e; padding: 24px; } .ds-btn-light { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 24px; border: 2px solid #ffffff; border-radius: 2px; background: #ffffff; color: #7a1f2e; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-variation-settings: 'wdth' 110; text-decoration: none; transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-light:hover { background: #ebd3d7; border-color: #ebd3d7; } .ds-btn-light:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Placeholder Button",
+      "kind": "button",
+      "refersTo": "button-placeholder",
+      "description": "Inert stand-in with the button's footprint while the club email is not set.",
+      "html": "<span class=\"ds-btn-tbd\">Email the club (email TBD)</span>",
+      "css": ".ds-btn-tbd { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 24px; border: 2px dashed #7a1f2e; border-radius: 2px; background: transparent; color: #7a1f2e; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.9rem; font-weight: 500; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "48px sticky bar with wide wordmark; Join link always maroon.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-wordmark\" href=\"#\">Bearden Robotics</a><ul><li><a href=\"#\">About</a></li><li><a href=\"#\">Sponsors</a></li><li><a href=\"#\">Contact</a></li><li><a class=\"ds-nav-join\" href=\"#\">Join</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 48px; padding-inline: 24px; background: #eef1f4; border-bottom: 1px solid #c9d0d8; font-family: 'Archivo', system-ui, sans-serif; color: #1f2328; } .ds-wordmark { font-weight: 800; font-variation-settings: 'wdth' 125; letter-spacing: -0.01em; text-decoration: none; color: inherit; } .ds-nav ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; } .ds-nav li a { display: flex; align-items: center; height: 48px; padding-inline: 12px; color: #545b64; text-decoration: none; transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav li a:hover { color: #1f2328; } .ds-nav li a:focus-visible { outline: 2px solid #7a1f2e; outline-offset: 3px; } .ds-nav .ds-nav-join { color: #7a1f2e; font-weight: 700; }"
+    },
+    {
+      "name": "Parts List",
+      "kind": "custom",
+      "refersTo": "parts-list-row-active",
+      "description": "Ruled bill-of-materials table; rows are pending, active, or placed.",
+      "html": "<table class=\"ds-bom\"><caption>Parts list</caption><thead><tr><th>Item</th><th>Qty</th><th>Part no.</th><th>Name</th><th></th></tr></thead><tbody><tr data-state=\"placed\"><td class=\"ds-mono\">1</td><td class=\"ds-mono\">2</td><td class=\"ds-mono\">BHR-101</td><td>C-channel rail, 33-hole</td><td class=\"ds-check\"></td></tr><tr data-state=\"active\"><td class=\"ds-mono\">2</td><td class=\"ds-mono\">2</td><td class=\"ds-mono\">BHR-102</td><td>Wheel, 4 in</td><td class=\"ds-check\"></td></tr><tr><td class=\"ds-mono\">3</td><td class=\"ds-mono\">2</td><td class=\"ds-mono\">BHR-103</td><td>Smart motor, drive</td><td class=\"ds-check\"></td></tr></tbody></table>",
+      "css": ".ds-bom { width: 420px; border-collapse: collapse; background: #eef1f4; border: 1.5px solid #1f2328; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; line-height: 1.3; color: #1f2328; } .ds-bom caption { padding: 6px 10px; border: 1.5px solid #1f2328; border-bottom: 0; background: #eef1f4; font-weight: 700; font-variation-settings: 'wdth' 110; text-align: left; } .ds-bom th, .ds-bom td { padding: 4px 10px; border-top: 1px solid #c9d0d8; text-align: left; } .ds-bom th { font-weight: 600; color: #545b64; } .ds-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-bom tr { transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-bom tr[data-state='active'] { background: #f1e3e5; color: #7a1f2e; } .ds-bom tr[data-state='placed'] { color: #545b64; } .ds-check { width: 28px; } .ds-bom tr[data-state='placed'] .ds-check::after { content: ''; display: block; width: 5px; height: 10px; margin-left: 4px; border: solid #545b64; border-width: 0 2px 2px 0; transform: rotate(45deg); }"
+    },
+    {
+      "name": "Spec Row",
+      "kind": "custom",
+      "description": "Ruled definition row pairing a maroon line icon and wide verb with a description.",
+      "html": "<dl class=\"ds-spec\"><div class=\"ds-spec-row\"><dt><svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" aria-hidden=\"true\"><circle cx=\"16\" cy=\"16\" r=\"12\"/><circle cx=\"16\" cy=\"16\" r=\"3\"/><path class=\"c\" d=\"M16 1v30M1 16h30\"/></svg><span>Drive</span></dt><dd>Take the controls, test it, find what breaks, and fix it.</dd></div></dl>",
+      "css": ".ds-spec { margin: 0; border-top: 1.5px solid #1f2328; font-family: 'Archivo', system-ui, sans-serif; color: #1f2328; } .ds-spec-row { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 24px; align-items: center; padding: 28px 0; border-bottom: 1px solid #7c838c; } .ds-spec dt { display: flex; align-items: center; gap: 16px; font-size: 2rem; font-weight: 750; font-variation-settings: 'wdth' 120; letter-spacing: -0.01em; line-height: 1; } .ds-spec svg { flex: none; color: #7a1f2e; } .ds-spec svg :is(path, circle) { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; } .ds-spec svg .c { stroke-width: 0.75; stroke-dasharray: 5 2 1 2; } .ds-spec dd { margin: 0; max-width: 48ch; font-size: 1.0625rem; line-height: 1.55; }"
+    },
+    {
+      "name": "Placeholder Mark",
+      "kind": "chip",
+      "description": "Inline mark for any fact the club has not decided yet.",
+      "html": "<p class=\"ds-p\">Meetings: <span class=\"ds-tbd\">Day TBD</span>, <span class=\"ds-tbd\">room TBD</span>.</p>",
+      "css": ".ds-p { font-family: 'Archivo', system-ui, sans-serif; color: #1f2328; } .ds-tbd { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.9em; color: #7a1f2e; border-bottom: 1.5px dashed currentColor; }"
+    },
+    {
+      "name": "Title Block",
+      "kind": "custom",
+      "description": "Page footer drawn as an engineering title block.",
+      "html": "<dl class=\"ds-tb\"><div><dt>Title</dt><dd>Bearden High Robotics Club</dd></div><div><dt>Scale</dt><dd>NTS</dd></div><div><dt>Rev</dt><dd>A</dd></div><div><dt>Sheet</dt><dd>1 of 1</dd></div></dl>",
+      "css": ".ds-tb { display: grid; grid-template-columns: 2fr 0.7fr 0.6fr 0.8fr; margin: 0; border: 1.5px solid #1f2328; background: #eef1f4; font-family: 'Archivo', system-ui, sans-serif; color: #1f2328; } .ds-tb div { padding: 8px 12px; border-right: 1px solid #1f2328; } .ds-tb div:last-child { border-right: 0; } .ds-tb dt { font-size: 0.75rem; color: #545b64; } .ds-tb dd { margin: 2px 0 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Assembly Sheet",
+    "overview": "The whole site is a build manual a student could actually follow: cool-gray blueprint paper ruled with a fine grid, ink-gray technical line art, and Bearden maroon used as drafting-pen ink for whatever matters right now (the part being placed, the call to action, the Join field). Every device comes from engineering drawings: balloons with leader lines, dashed assembly guides, center lines, dimension lines with arrowheads, a parts list, and a title block that closes the page. Nothing is rendered, lit, or glowing. The robot is a line drawing, and the content sits on the sheet like annotations.\n\nThe page is light, calm, and deliberately sparse. Type is wide, heavy Archivo for anything spoken aloud and JetBrains Mono only for things you would read off a drawing (part numbers, quantities, step captions, placeholders). Depth comes from line weight and ink value, never from shadows. The only full color field on the page is the maroon Join section, which makes the single action unmissable.\n\nThe rejected default is the robotics category look: dark hero, glowing robot render, icon-card grids. Honesty is part of the look too: anything the club has not decided yet is drawn as a dashed, monospaced \"TBD\" mark, the way an unfinished drawing marks a value still to be confirmed.",
+    "keyCharacteristics": [
+      "Light blueprint paper with a two-level grid (24px minor, 120px major) behind every section.",
+      "Line art at a single weight (1.5px, non-scaling) with 0.75px for thin, center, and leader lines.",
+      "Maroon is a state and an action color, never decoration.",
+      "Square, ruled forms: 1px and 1.5px rules, 2px corner at most on interface chrome.",
+      "Wide Archivo headings; monospace only for drawing data.",
+      "Motion is assembly: parts travel along their guides as you scroll; everything else is a short color fade."
+    ],
+    "rules": [
+      { "name": "The Pen-Ink Rule", "body": "Maroon marks what is active or actionable: the part being placed, the thing to click, the Join field. If an element is neither, it is drawn in ink or graphite.", "section": "colors" },
+      { "name": "The Lines-Only Gray Rule", "body": "Construction Gray (about 3.4:1 on paper) is for strokes and rules, never for text. Secondary text uses Graphite, which clears 4.5:1.", "section": "colors" },
+      { "name": "The Drawing-Data Rule", "body": "Monospace is reserved for values you would read off a drawing: numbers, part codes, captions, TBD marks. Headings, buttons, and prose are never set in mono (the placeholder button is the one exception, because its label is itself a TBD mark).", "section": "typography" },
+      { "name": "The Wide-For-Weight Rule", "body": "Weight and width rise together. Headings use width 110–125; body text stays at default width.", "section": "typography" },
+      { "name": "The Drafted-Depth Rule", "body": "Hierarchy comes from line weight, dash pattern, and ink value. A shadow, glow, or blur on this sheet is a foreign object.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the two-level blueprint grid (24px minor, 120px major, 1px rules) behind the page; it is part of the world.",
+      "Do fill drawn parts, tables, and the title block with Blueprint Paper so they sit on top of the grid.",
+      "Do draw new illustrations and icons in the robot's stroke language: 1.5px round-joined strokes, 0.75px for thin and center lines, maroon only for the active element.",
+      "Do mark every undecided fact with the dashed mono TBD mark instead of inventing a value.",
+      "Do use the out-expo curve (cubic-bezier(0.16, 1, 0.3, 1)) at 0.2–0.3s for color and opacity state changes, and drop all transitions under reduced motion.",
+      "Do keep text at Graphite or darker on paper, and On Maroon Soft or lighter on maroon."
+    ],
+    "donts": [
+      "Don't use shadows, glows, blur, or soft tonal gradients; the grid's 1px rules are the only gradient-built thing on the page.",
+      "Don't set text in Construction Gray.",
+      "Don't use maroon for decoration or for more than one full-bleed field per page.",
+      "Don't round interface chrome beyond 2px or wrap content in cards; group with rules and ruled tables as a drawing would.",
+      "Don't use dashed lines casually; dashes mean an assembly guide, a hidden line, or a placeholder.",
+      "Don't set prose, headings, or buttons in monospace (the placeholder button excepted)."
+    ]
+  }
+}

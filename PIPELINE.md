@@ -28,7 +28,7 @@
 - [x] Hero, sections, tokens
 - [x] Review + test pass (design finish review + code review/runtime test)
 - [x] Railway service `web` from `main`, live at https://web-production-5ecf5.up.railway.app
-- [ ] DESIGN.md from the built site
+- [x] DESIGN.md from the built site
 - [ ] Club fills in `src/content.ts` (meeting day/time/room, advisor, email)
 
 ## Placeholders to replace
