@@ -121,8 +121,8 @@ function Claw({ p }: { p: MotionValue<number> }) {
     <g transform="translate(312 0) rotate(-20)">
       <rect className="solid" x="0" y="-24" width="20" height="48" />
       <rect x="-6" y="-46" width="40" height="22" rx="4" />
-      <motion.path d="M20 -14 L70 -18 L92 -6" style={{ rotate: top, originX: 0, originY: 1 }} />
-      <motion.path d="M20 14 L70 18 L92 6" style={{ rotate: bottom, originX: 0, originY: 0 }} />
+      <motion.path d="M20 -14 L70 -18 L92 -6" style={{ rotate: top, originX: 0, originY: 1 / 3 }} />
+      <motion.path d="M20 14 L70 18 L92 6" style={{ rotate: bottom, originX: 0, originY: 2 / 3 }} />
     </g>
   )
 }

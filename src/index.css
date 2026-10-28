@@ -106,6 +106,10 @@ a {
   outline-offset: 3px;
 }
 
+main:focus {
+  outline: none;
+}
+
 .tbd {
   font-family: var(--font-mono);
   font-size: 0.9em;

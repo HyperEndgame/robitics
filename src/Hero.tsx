@@ -1,6 +1,14 @@
-import { useRef, useState } from 'react'
-import { useMotionValue, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
+import { useRef, useState, useSyncExternalStore } from 'react'
+import { useMotionValue, useMotionValueEvent, useScroll } from 'framer-motion'
 import { PARTS, Robot, stepFor } from './Robot'
+
+// framer-motion's useReducedMotion reads the setting once; this one follows live OS changes.
+const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+const subscribeReduce = (onChange: () => void) => {
+  reduceQuery.addEventListener('change', onChange)
+  return () => reduceQuery.removeEventListener('change', onChange)
+}
+const useReducedMotion = () => useSyncExternalStore(subscribeReduce, () => reduceQuery.matches)
 
 function caption(step: number) {
   if (step === 0) return 'Exploded view. Scroll to build it.'
@@ -59,8 +67,9 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
   const still = useMotionValue(1)
   const p = reduce ? still : scrollYProgress
-  const [step, setStep] = useState(() => stepFor(p.get()))
-  useMotionValueEvent(p, 'change', (v) => setStep(stepFor(v)))
+  const [scrollStep, setStep] = useState(() => stepFor(p.get()))
+  useMotionValueEvent(scrollYProgress, 'change', (v) => setStep(stepFor(v)))
+  const step = reduce ? stepFor(1) : scrollStep
 
   return (
     <section ref={ref} className={reduce ? 'hero hero--static' : 'hero'} aria-labelledby="hero-title">
@@ -72,7 +81,8 @@ export function Hero() {
           <p className="caption" aria-live="polite" aria-atomic="true">{caption(step)}</p>
         </div>
         <div className="sheet">
-          <Robot p={p} step={step} />
+          {/* Remount when reduced motion toggles so every transform rebinds to the new progress source. */}
+          <Robot key={reduce ? 'still' : 'scroll'} p={p} step={step} />
           <PartsList step={step} />
           <PartsStrip step={step} />
         </div>

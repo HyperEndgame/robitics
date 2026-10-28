@@ -8,7 +8,7 @@ function Tbd({ value, label }: { value: string; label: string }) {
 }
 
 function MailButton({ className, children }: { className: string; children: ReactNode }) {
-  if (!CLUB.email) return <span className={`${className} button--tbd`}>{children}: address TBD</span>
+  if (!CLUB.email) return <span className={`${className} button--tbd`}>{children} (email TBD)</span>
   return <a className={className} href={`mailto:${CLUB.email}`}>{children}</a>
 }
 
@@ -163,9 +163,9 @@ function TitleBlock() {
 export default function App() {
   return (
     <>
-      <a className="skip" href="#about">Skip to content</a>
+      <a className="skip" href="#top">Skip to content</a>
       <Nav />
-      <main id="top">
+      <main id="top" tabIndex={-1}>
         <Hero />
         <About />
         <Join />
