@@ -203,6 +203,9 @@ A ruled bill-of-materials table: 1.5px ink frame, a bold captioned header cell, 
 ### Exploded Robot Drawing (signature)
 An SVG line drawing at 1.5px non-scaling strokes on paper-filled shapes. Each part sits offset along a dashed guide with a numbered balloon and leader line; scroll progress moves it home on a cubic in-out curve while the part turns maroon, then graphite once placed, and its balloon fades. Dimensions and a hatched ground line appear once assembled. With reduced motion the drawing is shown assembled and static.
 
+### 3D Hero Model (signature, where WebGL2 is available)
+The same clawbot as an unlit orthographic Three.js model: paper-filled meshes, 1.5px ink edges with 0.75px hole and detail lines, and the same state language as the drawing (ink pending, maroon active, graphite placed). Scroll still drives the assembly; the camera is a fixed three-quarter elevation until the reader drags to orbit. Right-drag pans, Cmd/Ctrl-scroll or pinch zooms, and a square Reset view control, set in the sheet's top-left corner, returns to the drawing's framing. The canvas is `aria-hidden`; the parts list and step caption carry the content. Reduced motion, missing WebGL2, Save-Data, a failed first frame, or a lost context restores the SVG drawing. On touch, an Explore 3D control must be pressed before the canvas captures gestures, so the page always scrolls.
+
 ### Spec List
 A definition list with a 1.5px ink top rule and Construction Gray row rules, 28px row padding. Terms pair a 32px maroon line icon (drawn in the same stroke language as the robot) with a wide heavy verb.
 
@@ -218,6 +221,7 @@ Any undecided fact renders as maroon mono text with a 1.5px dashed underline rea
 - **Do** keep the two-level blueprint grid (24px minor, 120px major, 1px rules) behind the page; it is part of the world.
 - **Do** fill drawn parts, tables, and the title block with Blueprint Paper so they sit on top of the grid.
 - **Do** draw new illustrations and icons in the robot's stroke language: 1.5px round-joined strokes, 0.75px for thin and center lines, maroon only for the active element.
+- **Do** keep the 3D hero orthographic and unlit; orbit, pan, and zoom change the viewpoint, never the drawing's stroke language.
 - **Do** mark every undecided fact with the dashed mono TBD mark instead of inventing a value.
 - **Do** use the out-expo curve (cubic-bezier(0.16, 1, 0.3, 1)) at 0.2–0.3s for color and opacity state changes, and drop all transitions under reduced motion.
 - **Do** keep text at Graphite or darker on paper, and On Maroon Soft or lighter on maroon.

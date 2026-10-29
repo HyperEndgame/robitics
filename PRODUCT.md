@@ -40,6 +40,8 @@ A school club that builds with VEX robotics hardware for the craft of building, 
 
 None yet: no photos, logos, sponsors, testimonials, or stats. Do not fabricate any of these.
 
+The 3D hero robot is an illustrative VEX V5 Clawbot, built from the dimensions in the site's own drawing. It is not a model of the club's robot and should not be captioned as one.
+
 ## Product Principles
 
 1. Make joining obvious: one clear way for a student to get involved.

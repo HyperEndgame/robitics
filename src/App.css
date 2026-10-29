@@ -179,6 +179,113 @@ section[id] {
   overflow: visible;
 }
 
+/* 3D hero: the SVG poster and the canvas occupy the same grid cell, so the
+   canvas can take over without the layout moving. */
+.sheet-model {
+  position: relative;
+  display: grid;
+  min-height: 0;
+}
+
+.sheet-model > .robot {
+  grid-area: 1 / 1;
+}
+
+.viewer {
+  position: absolute;
+  inset: 0;
+}
+
+.viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  touch-action: pan-y;
+}
+
+.viewer[data-ready='true'] canvas {
+  opacity: 1;
+}
+
+.viewer-ui {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.viewer[data-ready='true'] .viewer-ui {
+  opacity: 1;
+}
+
+.viewer-ui > * {
+  pointer-events: auto;
+}
+
+.viewer-button {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 110;
+  cursor: pointer;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+
+.viewer-button:hover {
+  border-color: var(--maroon);
+  color: var(--maroon);
+}
+
+.viewer-button:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 3px;
+}
+
+.viewer-hint {
+  margin: 0;
+  max-width: 210px;
+  padding: 2px 4px;
+  background: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.viewer-explore {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .viewer-ui {
+    flex-direction: row;
+  }
+
+  .viewer-hint {
+    display: none;
+  }
+
+  .viewer-explore {
+    display: inline-flex;
+  }
+}
+
 /* Robot drawing */
 
 .robot :is(path, rect, circle, line) {

@@ -1,5 +1,6 @@
 import { useRef, useState, useSyncExternalStore } from 'react'
 import { useMotionValue, useMotionValueEvent, useScroll } from 'framer-motion'
+import { Robot3D } from './components/Robot3D'
 import { PARTS, Robot, stepFor } from './Robot'
 
 // framer-motion's useReducedMotion reads the setting once; this one follows live OS changes.
@@ -9,6 +10,18 @@ const subscribeReduce = (onChange: () => void) => {
   return () => reduceQuery.removeEventListener('change', onChange)
 }
 const useReducedMotion = () => useSyncExternalStore(subscribeReduce, () => reduceQuery.matches)
+
+function supportsRobot3D() {
+  if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return false
+  try {
+    return !!document.createElement('canvas').getContext('webgl2')
+  } catch {
+    return false
+  }
+}
+
+let webgl2: boolean | undefined
+const canRender3D = () => (webgl2 ??= supportsRobot3D())
 
 function caption(step: number) {
   if (step === 0) return 'Exploded view. Scroll to build it.'
@@ -71,6 +84,9 @@ export function Hero() {
   useMotionValueEvent(scrollYProgress, 'change', (v) => setStep(stepFor(v)))
   const step = reduce ? stepFor(1) : scrollStep
 
+  const [threeFailed, setThreeFailed] = useState(false)
+  const threeOn = !reduce && !threeFailed && canRender3D()
+
   return (
     <section ref={ref} className={reduce ? 'hero hero--static' : 'hero'} aria-labelledby="hero-title">
       <div className="stage">
@@ -81,8 +97,14 @@ export function Hero() {
           <p className="caption" aria-live="polite" aria-atomic="true">{caption(step)}</p>
         </div>
         <div className="sheet">
-          {/* Remount when reduced motion toggles so every transform rebinds to the new progress source. */}
-          <Robot key={reduce ? 'still' : 'scroll'} p={p} step={step} />
+          <div className="sheet-model">
+            {/* Robot3D keeps this poster until its first frame is drawn, then hands off. */}
+            {threeOn ? (
+              <Robot3D p={p} step={step} onFail={() => setThreeFailed(true)} />
+            ) : (
+              <Robot key={reduce ? 'still' : 'scroll'} p={p} step={step} />
+            )}
+          </div>
           <PartsList step={step} />
           <PartsStrip step={step} />
         </div>

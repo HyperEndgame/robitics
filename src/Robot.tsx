@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 // Drawing scale: 24 units = 1 inch, VEX hole pitch 0.5in = 12 units.
 const STEP_START = 0.06
 const STEP_LEN = 0.11
-const MOVE_LEN = 0.09
+export const MOVE_LEN = 0.09
 export const ASSEMBLED_AT = 0.83
 
 export type Part = {
@@ -22,7 +22,7 @@ export type Part = {
 
 export const PARTS: Part[] = [
   { id: 'chassis', qty: 2, partNo: 'BHR-101', name: 'C-channel rail, 33‑hole', caption: 'Lay out the chassis rails', dx: 0, dy: -24, rot: -2, anchor: [630, 600], balloon: [870, 560] },
-  { id: 'wheels', qty: 2, partNo: 'BHR-102', name: 'Wheel, 4 in', caption: 'Fit the wheels', dx: 0, dy: 84, rot: 0, anchor: [780, 600], balloon: [880, 600] },
+  { id: 'wheels', qty: 4, partNo: 'BHR-102', name: 'Wheel, 4 in', caption: 'Fit the wheels', dx: 0, dy: 84, rot: 0, anchor: [780, 600], balloon: [880, 600] },
   { id: 'motors', qty: 2, partNo: 'BHR-103', name: 'Smart motor, drive', caption: 'Mount the drive motors', dx: 0, dy: -170, rot: 0, anchor: [480, 600], balloon: [560, 540] },
   { id: 'brain', qty: 1, partNo: 'BHR-104', name: 'Robot brain', caption: 'Mount the brain', dx: -150, dy: -110, rot: -6, anchor: [510, 483], balloon: [380, 420] },
   { id: 'battery', qty: 1, partNo: 'BHR-105', name: 'Battery', caption: 'Seat the battery', dx: 300, dy: 0, rot: 3, anchor: [636, 626], balloon: [700, 580] },
